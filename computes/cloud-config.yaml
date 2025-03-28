@@ -1,0 +1,38 @@
+#cloud-config
+hostname: ${hostname} 
+timezone: "Europe/Paris"
+
+groups:
+  - nfs-users
+
+users:
+ - default
+ - name: nfs-user
+   groups: [fs-users]
+   shell: /bin/bash
+manage_resolv_conf: true
+keyboard: 
+  layout: fr
+  variant: ''
+packages:
+ - python3-pip
+ - jq
+
+# DNS resolution
+write_files:
+  - path: /etc/systemd/resolved.conf
+    content: |
+      [Resolve]
+      DNS=${dns_servers}
+
+  - path: /etc/hosts
+    permissions: '0644'
+    content: |
+      127.0.0.1 localhost
+      ::1 ip6-localhost ip6-loopback
+      127.0.0.1 ${hostname}
+      ${k8s_api_ip} ${k8s_api_domain}
+runcmd:
+  - systemctl restart systemd-resolved
+
+final_message: "DNS, network and user configuration completed"
