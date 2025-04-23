@@ -1,6 +1,6 @@
-# Terraform Modules – MCM Project
+# Terraform Modules – Cloud Project
 
-This directory is a standalone Git submodule used by the MCM (Monaco Cloud Marketplace) infrastructure-as-code stack. It contains all reusable, isolated Terraform modules required to provision Kubernetes-based environments in a vCloud Director (vCD) context.
+This directory is a standalone Git submodule used for VCloud Director infrastructure-as-code stack. It contains all reusable, isolated Terraform modules required to provision Kubernetes-based environments in a vCloud Director (vCD) context.
 
 ---
 
